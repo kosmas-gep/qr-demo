@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>System Access</title>
+<style>
+  body {
+    background: black;
+    color: #00ff00;
+    font-family: monospace;
+    padding: 20px;
+  }
+  #terminal {
+    white-space: pre-line;
+  }
+  .blink {
+    animation: blink 1s infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div id="terminal"></div>
+<div class="blink">█</div>
+
+<script>
+const lines = [
+  "Connecting to device...",
+  "Establishing secure channel...",
+  "Bypassing security...",
+  "Accessing contacts...",
+  "Uploading files...",
+  "Extracting saved passwords...",
+  "Access granted."
+];
+
+let i = 0;
+const terminal = document.getElementById("terminal");
+
+function typeLine() {
+  if (i < lines.length) {
+    terminal.innerHTML += lines[i] + "\\n";
+    i++;
+    setTimeout(typeLine, 800);
+  } else {
+    setTimeout(showReveal, 1500);
+  }
+}
+
+function showReveal() {
+  document.body.innerHTML = `
+    <h1 style="color:white;">😄 Gotcha!</h1>
+    <p style="color:white; font-size:20px;">
+      This was just a demo.<br><br>
+      You scanned a QR code without knowing what it does.<br><br>
+      <b>That’s exactly how real attacks start.</b>
+    </p>
+  `;
+}
+
+typeLine();
+</script>
+
+</body>
+</html>
